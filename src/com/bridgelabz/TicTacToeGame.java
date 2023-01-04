@@ -17,11 +17,14 @@ package com.bridgelabz;
         static void  chooseletter(){
             Scanner scan =new Scanner(System.in);
             System.out.println("Choose a letter: X or O");
-            playerletter=scan.next().toUpperCase().charAt(0);
-            if (playerletter=='X'){
+            
+            if (playerletter=='X'||playerletter=='x'){
                 computerletter='O';
-            }else {
+            }else if(playerletter=='O'||playerletter=='o') {
                 computerletter='X';
+            }else{
+                System.out.pritln("Invalid Input");
+                chooseletter();
             }
         }
 
