@@ -4,8 +4,8 @@ package com.bridgelabz;
 
     public class TicTacToeGame {
         static char[] board = new char[10];
-         static char playerletter;
-         static char computerletter;
+         static char playersymbol;
+         static char computersymbol;
         static  void emptyboard() {
             for (int i = 1; i < board.length; i++) {
                 {
@@ -17,11 +17,11 @@ package com.bridgelabz;
         static void  chooseletter(){
             Scanner scan =new Scanner(System.in);
             System.out.println("Choose a letter: X or O");
-            playerletter=scan.next().charAt(0);
-            if (playerletter=='X'||playerletter=='x'){
-                computerletter='O';
-            }else if(playerletter=='O'||playerletter=='o') {
-                computerletter='X';
+            playersymbol =scan.next().charAt(0);
+            if (playersymbol =='X'|| playersymbol =='x'){
+                computersymbol ='O';
+            }else if(playersymbol =='O'|| playersymbol =='o') {
+                computersymbol ='X';
             }else{
                 System.out.println("Invalid Input");
                 chooseletter();
@@ -43,32 +43,57 @@ package com.bridgelabz;
                 playerturn();
             }
             if (board[playermove] == ' ') {
-                board[playermove] = playerletter;
-                showboard();
+                board[playermove] = playersymbol;
             } else {
                 System.out.println("Board is not empty for the position " + playermove);
                 playerturn();
-            }
-        }
-        static void computerturn() {
-           int computermove = (int)(Math.random()*9)+1;
-            if (board[computermove] == ' ') {
-                board[computermove] = computerletter;
+            }if (checkWinner(playersymbol)){
+                System.out.println("Player wins");
+            }else {
                 showboard();
-            } else {
-                System.out.println("Board is not empty for the position " + computermove);
-                computerturn();
+                System.out.println("Computer chance");
+                Computerturn();
             }
         }
+        static void Computerturn() {
+           int ComputerMove = (int)(Math.random()*9)+1;
+            if (board[ComputerMove] == ' ') {
+                board[ComputerMove] = computersymbol;
+            } else {
+                System.out.println("Board is not empty for the position " + ComputerMove);
+                Computerturn();
+            }if (checkWinner(playersymbol)){
+                System.out.println("Computer wins");
+            }else {
+                showboard();
+                System.out.println("Player chance");
+                playerturn();
+            }
+        }
+
         static void firstToStartGame(){
             int toss=(int)(Math.random()*10)%2;
             if (toss==0){
                 System.out.println("Computer starts to play game first");
-                computerturn();
+                Computerturn();
             }else {
                 System.out.println("Player starts to play game first");
                 playerturn();
             }
+        }
+        static boolean checkWinner(char symbol) {
+            if ((board[1] == symbol && board[2] == symbol && board[3] == symbol) ||
+                    (board[1] == symbol && board[4] == symbol && board[7] == symbol) ||
+                    (board[1] == symbol && board[5] == symbol && board[9] == symbol) ||
+                    (board[2] == symbol && board[5] == symbol && board[8] == symbol) ||
+                    (board[3] == symbol && board[6] == symbol && board[9] == symbol) ||
+                    (board[3] == symbol && board[5] == symbol && board[7] == symbol) ||
+                    (board[4] == symbol && board[5] == symbol && board[6] == symbol) ||
+                    (board[7] == symbol && board[8] == symbol && board[9] == symbol)) {
+                showboard();
+                return true;
+            }
+            return false;
         }
             public static void main(String[] args) {
             emptyboard();
