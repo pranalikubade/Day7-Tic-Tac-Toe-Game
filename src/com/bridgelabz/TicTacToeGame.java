@@ -50,11 +50,31 @@ package com.bridgelabz;
                 playerturn();
             }
         }
+        static void computerturn() {
+           int computermove = (int)(Math.random()*9)+1;
+            if (board[computermove] == ' ') {
+                board[computermove] = computerletter;
+                showboard();
+            } else {
+                System.out.println("Board is not empty for the position " + computermove);
+                computerturn();
+            }
+        }
+        static void firstToStartGame(){
+            int toss=(int)(Math.random()*10)%2;
+            if (toss==0){
+                System.out.println("Computer starts to play game first");
+                computerturn();
+            }else {
+                System.out.println("Player starts to play game first");
+                playerturn();
+            }
+        }
             public static void main(String[] args) {
             emptyboard();
             chooseletter();
             showboard();
-            playerturn();
+            firstToStartGame();
         }
     }
 
