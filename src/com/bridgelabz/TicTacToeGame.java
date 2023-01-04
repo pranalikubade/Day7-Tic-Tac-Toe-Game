@@ -23,7 +23,7 @@ package com.bridgelabz;
             }else if(playerletter=='O'||playerletter=='o') {
                 computerletter='X';
             }else{
-                System.out.pritln("Invalid Input");
+                System.out.println("Invalid Input");
                 chooseletter();
             }
         }
