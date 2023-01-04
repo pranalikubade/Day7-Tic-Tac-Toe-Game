@@ -17,7 +17,7 @@ package com.bridgelabz;
         static void  chooseletter(){
             Scanner scan =new Scanner(System.in);
             System.out.println("Choose a letter: X or O");
-            
+            playerletter=scan.next().charAt(0);
             if (playerletter=='X'||playerletter=='x'){
                 computerletter='O';
             }else if(playerletter=='O'||playerletter=='o') {
@@ -34,12 +34,27 @@ package com.bridgelabz;
             System.out.println("--------------");
             System.out.println(   board[7]+ "  |  " +board[8]+ "  |  " +board[9]  );
         }
-
-
-        public static void main(String[] args) {
+        static void playerturn() {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("Choose your location between (1-9)");
+            int playermove = scan.nextInt();
+            if (playermove > 9 || playermove < 1) {
+                System.out.println("Invalid Input");
+                playerturn();
+            }
+            if (board[playermove] == ' ') {
+                board[playermove] = playerletter;
+                showboard();
+            } else {
+                System.out.println("Board is not empty for the position " + playermove);
+                playerturn();
+            }
+        }
+            public static void main(String[] args) {
             emptyboard();
             chooseletter();
             showboard();
+            playerturn();
         }
     }
 
