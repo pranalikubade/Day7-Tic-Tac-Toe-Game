@@ -17,6 +17,7 @@ package com.bridgelabz;
         static void  chooseletter(){
             Scanner scan =new Scanner(System.in);
             System.out.println("Choose a letter: X or O");
+            playerletter=scan.next().charAt(0);
             if (playerletter=='X'||playerletter=='x'){
                 computerletter='O';
             }else if(playerletter=='O'||playerletter=='o') {
