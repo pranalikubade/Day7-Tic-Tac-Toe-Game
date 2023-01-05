@@ -27,30 +27,30 @@ package com.bridgelabz;
                 chooseletter();
             }
         }
-        static  void showboard() {
+        static  void Showboard() {
             System.out.println(   board[1]+ "  |  " +board[2]+ "  |  " +board[3]  );
             System.out.println("--------------");
             System.out.println(   board[4]+ "  |  " +board[5]+ "  |  " +board[6]  );
             System.out.println("--------------");
             System.out.println(   board[7]+ "  |  " +board[8]+ "  |  " +board[9]  );
         }
-        static void playerturn() {
+        static void Playerturn() {
             Scanner scan = new Scanner(System.in);
             System.out.println("Choose your location between (1-9)");
-            int playermove = scan.nextInt();
-            if (playermove > 9 || playermove < 1) {
+            int PlayerMove = scan.nextInt();
+            if (PlayerMove > 9 || PlayerMove < 1) {
                 System.out.println("Invalid Input");
-                playerturn();
+                Playerturn();
             }
-            if (board[playermove] == ' ') {
-                board[playermove] = playersymbol;
+            if (board[PlayerMove] == ' ') {
+                board[PlayerMove] = playersymbol;
             } else {
-                System.out.println("Board is not empty for the position " + playermove);
-                playerturn();
+                System.out.println("Board is not empty for the position " + PlayerMove);
+                Playerturn();
             }if (checkWinner(playersymbol)){
                 System.out.println("Player wins");
             }else {
-                showboard();
+                Showboard();
                 System.out.println("Computer chance");
                 Computerturn();
             }
@@ -65,9 +65,9 @@ package com.bridgelabz;
             }if (checkWinner(playersymbol)){
                 System.out.println("Computer wins");
             }else {
-                showboard();
+                Showboard();
                 System.out.println("Player chance");
-                playerturn();
+                Playerturn();
             }
         }
 
@@ -78,7 +78,7 @@ package com.bridgelabz;
                 Computerturn();
             }else {
                 System.out.println("Player starts to play game first");
-                playerturn();
+                Playerturn();
             }
         }
         static boolean checkWinner(char symbol) {
@@ -90,7 +90,7 @@ package com.bridgelabz;
                     (board[3] == symbol && board[5] == symbol && board[7] == symbol) ||
                     (board[4] == symbol && board[5] == symbol && board[6] == symbol) ||
                     (board[7] == symbol && board[8] == symbol && board[9] == symbol)) {
-                showboard();
+                Showboard();
                 return true;
             }
             return false;
@@ -98,7 +98,7 @@ package com.bridgelabz;
             public static void main(String[] args) {
             emptyboard();
             chooseletter();
-            showboard();
+            Showboard();
             firstToStartGame();
         }
     }
